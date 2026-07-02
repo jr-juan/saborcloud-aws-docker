@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: postgres-saborcloud
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Admin1234
+      POSTGRES_DB: saborcloud
+    volumes:
+      - ./pgdata:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-saborcloud
+    environment:
+      PGADMIN_DEFAULT_EMAIL: juanromancuero@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: juan24ing
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
